@@ -1,11 +1,10 @@
 const express = require('express')
 const app = express()
 const os = require('os')
-const cors = require('cors')
+
 const exec = require('child_process').exec; 
 
-app.use(cors())
-app.get('/info',async(req,res)=>{
+
       var result_arr = []
       var nameof
  exec('wmic logicaldisk get   Size',(error, stdout, stderr) => {
@@ -33,7 +32,7 @@ app.get('/info',async(req,res)=>{
    
   }
 
-});
+
 exec('wmic logicaldisk get Name ',(error, stdout, stderr) => {
   if (error) {
     console.error(`exec error: ${error}`);
@@ -76,7 +75,7 @@ console.log(result_arr)
 console.log(nameof)
 
 setTimeout(()=>{
-     res.json({"owner":userinfo.username,
+     console.log({"owner":userinfo.username,
 "version":home,"chip":totalRAM[0].model,"Total RAM":ram,"Free RAM":FREE,"result":result_arr,"NAME":nameof})
 },2000)
    
